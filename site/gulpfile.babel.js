@@ -1,4 +1,6 @@
 // generated on 2015-10-08 using generator-gulp-webapp 1.0.3
+/* jshint esnext: true */
+
 import gulp from 'gulp';
 import gulpLoadPlugins from 'gulp-load-plugins';
 import browserSync from 'browser-sync';
@@ -154,6 +156,11 @@ gulp.task('wiredep', () => {
       ignorePath: /^(\.\.\/)*\.\./
     }))
     .pipe(gulp.dest('app'));
+});
+
+gulp.task('deploy', ['build'], function() {
+  return gulp.src('./dist/**/*')
+    .pipe($.ghPages());
 });
 
 gulp.task('build', ['lint', 'html', 'images', 'fonts', 'extras'], () => {
