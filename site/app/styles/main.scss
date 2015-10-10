@@ -4,6 +4,14 @@ $icon-font-path: '../fonts/';
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 // endbower
 
+@font-face {
+  font-family: 'HelveticaNeueThin';
+  src: url('../fonts/HelveticaNeueCE35Thin.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/HelveticaNeueCE35Thin.woff2')           format('woff2'),
+  url('../fonts/HelveticaNeueCE35Thin.woff')            format('woff'),
+  url('../fonts/HelveticaNeueCE35Thin.ttf')             format('truetype');
+}
+
 .browserupgrade {
   margin: 0.2em 0;
   background: #ccc;
@@ -19,6 +27,11 @@ body {
   padding-top: 20px;
   padding-bottom: 20px;
   background-color: black;
+  color: #bbb;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
 header, main, footer{
