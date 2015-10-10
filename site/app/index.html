@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>AANW</title>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -28,27 +28,47 @@
     <![endif]-->
 
     <div class="container">
-      <header><img src="images/AANW_logo.png" alt="AANW Inc."></header>
+      <header>
+        <img src="images/AANW_logo.png" alt="AANW Inc.">
+      </header>
       <main>
         <figure>
           <img src="images/figure.jpg" alt="">
           <figcaption>
-            Jalisco Ball Player
-            Protoclassic, circa 100 B.C. – A.D. 250
+            <div class="figure-name">
+              Jalisco Ball Player
+            </div>
+            <div class="figure-age">
+              Protoclassic, circa 100 B.C. – A.D. 250
+            </div>
 
-            Height:  19&frac12; inches (49.5 cm)
-            Provenance:  Collected in the mid-1960's, remained in the family by descent.
+            <div class="figure-details">
+              <div class="figure-height">
+                Height:  19&frac12; inches (49.5 cm)
+              </div>
+              <div class="figure-provenance">
+                Provenance:  Collected in the mid-1960's, remained in the family by descent.
+              </div>
+            </div>
           </figcaption>
         </figure>
       </main>
-      <footer>
+      <footer class="hidden-xs hidden-sm">
         Claudia Giangola
         John Menser
         Expertise in Pre-Columbian Art since 1966
 
-        +1 212.737.3766               info@aanwinc.com
+        <div class="row">
+          <div class="col-sm-6"><a href="#">+1 212.737.3766</a></div>
+          <div class="col-sm-6"><a href="#">info@aanwinc.com</a></div>
+        </div>
+
         Website launching soon
       </footer>
+      <div class="navbar-fixed-bottom text-center">
+        <a href="#" id="contact-info--toggle" class="visible-sm-block visible-xs-block">Toggle</a>
+      </div>
+
     </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
