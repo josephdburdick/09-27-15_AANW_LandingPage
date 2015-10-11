@@ -1,4 +1,4 @@
-$icon-font-path: '../fonts/';
+$font-path: '../fonts/';
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -6,10 +6,10 @@ $icon-font-path: '../fonts/';
 
 @font-face {
   font-family: 'HelveticaNeueThin';
-  src: url('../fonts/HelveticaNeueCE35Thin.eot?#iefix') format('embedded-opentype'),
-  url('../fonts/HelveticaNeueCE35Thin.woff2')           format('woff2'),
-  url('../fonts/HelveticaNeueCE35Thin.woff')            format('woff'),
-  url('../fonts/HelveticaNeueCE35Thin.ttf')             format('truetype');
+  src: url($font-path 'HelveticaNeueCE35Thin.eot?#iefix') format('embedded-opentype'),
+  url($font-path 'HelveticaNeueCE35Thin.woff2')           format('woff2'),
+  url($font-path 'HelveticaNeueCE35Thin.woff')            format('woff'),
+  url($font-path 'HelveticaNeueCE35Thin.ttf')             format('truetype');
 }
 
 .browserupgrade {
@@ -22,18 +22,25 @@ $icon-font-path: '../fonts/';
 html{
   -webkit-font-smoothing: antialiased;
 }
-/* Space out content a bit */
 body {
   padding-top: 20px;
-  padding-bottom: 20px;
+  padding-bottom: 90px;
   background-color: black;
   color: #bbb;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 16px;
-  line-height: 1.5;
   font-weight: 300;
+  line-height: 1.5;
 }
 
 header, main, footer{
   text-align: center;
+}
+
+.container{
+  max-width: 820px;
+}
+
+main{
+  margin-bottom: 70px;
 }
