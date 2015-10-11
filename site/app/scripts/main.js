@@ -10,10 +10,12 @@ $(() => {
     $body.toggleClass(overlayOpenClass);
 
     if ($body.hasClass(overlayOpenClass)){
+      $('#main-footer .footer-content').slideUp();
       if (!$('#main-footer .vertical-container').length){
         $('#main-footer .footer-content').wrap('<div class="vertical-container"><div class="vertical-content"></div></div>');
       }
     } else {
+      $('#main-footer .footer-content').slideDown();
       unwrapVerticalContainer();
     }
   });
@@ -23,6 +25,15 @@ $(() => {
       $body.removeClass(overlayOpenClass);
       unwrapVerticalContainer();
     }
+  }).trigger('resize');
+
+  var divs = $('.btn-open, .btn-close');
+  $window.on('scroll', () => {
+
+    let percent = $(window).scrollTop() / ($(document).height() - $(window).height());
+    console.log(percent);
+    divs.css('opacity', percent);
+
   }).trigger('resize');
 
   function unwrapVerticalContainer(){

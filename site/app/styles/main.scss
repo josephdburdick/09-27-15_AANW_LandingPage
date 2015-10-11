@@ -4,6 +4,8 @@ $defaultEase: ease-in-out;
 $defaultDelay: .2s;
 $textColor: #bbb;
 
+$toggleButtonSize: 72px;
+
 %fadeOut{
   opacity: 0;
   visibility: hidden;
@@ -36,7 +38,7 @@ html{
   -webkit-font-smoothing: antialiased;
 }
 body {
-
+  transition: all $defaultSpeed $defaultEase;
   background-color: black;
   color: $textColor;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
@@ -44,17 +46,18 @@ body {
   font-weight: 300;
   line-height: 1.5;
   &.overlay-open{
-    overflow: hidden;
+    // overflow: hidden;
   }
 }
 #site-wrapper{
   padding-top: 20px;
-  @media(max-width: $screen-sm){
-    padding-bottom: 40px;
-  }
-  @media(min-width: $screen-sm){
-    padding-bottom: 90px;
-  }
+  padding-bottom: $toggleButtonSize;
+  // @media(max-width: $screen-sm){
+  //   padding-bottom: $toggleButtonSize + 72px;;
+  // }
+  // @media(min-width: $screen-sm){
+  //   padding-bottom: 90px;
+  // }
 }
 
 header, main, footer{
@@ -86,7 +89,9 @@ img.fluid-width{
 }
 #main-figure{
   font-size: 24px;
-
+  @media(max-width: $screen-sm){
+    font-size: 18px;
+  }
   & > img{
     transition: opacity ($defaultSpeed * 2) $defaultEase ($defaultDelay * 2);
     opacity: 1;
@@ -99,7 +104,7 @@ img.fluid-width{
     transition-property: opacity, height;
     transition-duration: ($defaultSpeed * 2), ($defaultSpeed * 2);
     transition-timing-function: $defaultEase, $defaultEase;
-    transition-delay: ($defaultSpeed * 2), ($defaultSpeed * 2);
+    transition-delay: ($defaultSpeed * 2), ($defaultSpeed );
 
     @extend %fadeIn;
     .overlay-open &{
@@ -138,10 +143,9 @@ a.btn-transparent{
   }
 }
 
-$toggleButtonSize: 72px;
-[data-role="toggle-container"]{
-  height: $toggleButtonSize;
 
+[data-role="toggle-container"]{
+  min-height: $toggleButtonSize + 20;
   @media(min-width: $screen-sm){
     display: none;
   }
@@ -149,7 +153,8 @@ $toggleButtonSize: 72px;
     display: block;
   }
 }
-[data-toggle="overlay"]{
+a[data-toggle="overlay"]{
+  display: inline-block;
   text-decoration: none;
 }
 .btn-close,
@@ -158,7 +163,7 @@ $toggleButtonSize: 72px;
   display: inline-block;
   height: $toggleButtonSize;
   width: $toggleButtonSize;
-  transition: opacity $defaultSpeed $defaultEase;
+  transition: opacity $defaultSpeed $defaultEase $defaultDelay;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -206,8 +211,8 @@ $toggleButtonSize: 72px;
     transition: all $defaultSpeed $defaultEase $defaultDelay;
     .overlay-open &{
       opacity: 1;
-      height: 100%;
-      transition-delay: 2s;
+      height: auto;
+      // transition-delay: 2s;
     }
   }
 }
