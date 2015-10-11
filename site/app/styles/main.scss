@@ -1,4 +1,16 @@
 $font-path: '../fonts/';
+$defaultSpeed: .2s;
+$defaultEase: ease-in-out;
+$defaultDelay: .2s;
+
+%fadeOut{
+  opacity: 0;
+  visibility: hidden;
+}
+%fadeIn{
+  opacity: 1;
+  visibility: visible;
+}
 
 // bower:scss
 @import "bower_components/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
@@ -24,13 +36,18 @@ html{
 }
 body {
   padding-top: 20px;
-  padding-bottom: 90px;
   background-color: black;
   color: #bbb;
   font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
+  @media(max-width: $screen-sm){
+    padding-bottom: 40px;
+  }
+  @media(min-width: $screen-sm){
+    padding-bottom: 90px;
+  }
 }
 
 header, main, footer{
@@ -57,7 +74,30 @@ main{
 img.fluid-width{
   max-width: 100%;
 }
-#main-figure{ font-size: 24px; }
+#main-figure{
+  font-size: 24px;
+
+  & > img{
+    transition: opacity ($defaultSpeed * 2) $defaultEase ($defaultDelay * 2);
+    opacity: 1;
+    .overlay-open &{
+      opacity: .2;
+    }
+  }
+  figcaption{
+    transition: opacity ($defaultSpeed * 2) $defaultEase ($defaultSpeed * 2), height ($defaultSpeed * 2) $defaultEase ($defaultSpeed * 2);
+    transition-property: opacity, height;
+    transition-duration: ($defaultSpeed * 2), ($defaultSpeed * 2);
+    transition-timing-function: $defaultEase, $defaultEase;
+    transition-delay: ($defaultSpeed * 2), ($defaultSpeed * 2);
+
+    @extend %fadeIn;
+    .overlay-open &{
+      opacity: 0;
+      height: 0;
+    }
+  }
+}
 #main-footer{ font-size: 30px; }
 
 .contact-info{
@@ -65,29 +105,62 @@ img.fluid-width{
   margin-bottom: 45px;
 }
 
-.btn-close,
-.btn-open{
-  $size: 72px;
-  display: inline-block;
-  height: $size;
-  width: $size;
-  transition: all .2s ease-in-out;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+$toggleButtonSize: 72px;
+[data-role="toggle-container"]{
+  height: $toggleButtonSize;
+
   @media(min-width: $screen-sm){
     display: none;
   }
+  @media(max-width: $screen-sm){
+    display: block;
+  }
+}
+[data-toggle="overlay"]{
+  text-decoration: none;
+}
+.btn-close,
+.btn-open{
+  position: relative;
+  display: inline-block;
+  height: $toggleButtonSize;
+  width: $toggleButtonSize;
+  transition: opacity $defaultSpeed $defaultEase;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .btn-close{
   background-image: url(../images/btn_close.png);
+  @extend %fadeOut;
+  left: -($toggleButtonSize / 2);
   .overlay-open &{
-    visibility: visible;
+    @extend %fadeIn;
+    left: $toggleButtonSize / 2;
   }
 }
 .btn-open{
   background-image: url(../images/btn_open.png);
+  @extend %fadeIn;
+  left: -($toggleButtonSize / 2);
   .overlay-open &{
-    visibility: hidden;
+    @extend %fadeOut;
+    left: ($toggleButtonSize / 2);
   }
+}
+#main-footer{
+  display: none;
+  @media(min-width: $screen-sm){
+    display: block;
+  }
+  @media(max-width: $screen-sm){
+    display: none;
+    position: fixed;
+    top: 0; right: 0;
+    bottom: 0; left: 0;
+    .overlay-open &{
+      display: block;
+    }
+  }
+
 }
