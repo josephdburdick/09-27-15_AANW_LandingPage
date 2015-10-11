@@ -40,7 +40,54 @@ header, main, footer{
 .container{
   max-width: 820px;
 }
-
+#main-header{
+  margin-bottom: 30px;
+  img{
+    margin-left: -13%;
+    @media(max-width: $screen-sm){
+      margin-left: auto;
+      max-width: 50vw;
+      min-width: 200px;
+    }
+  }
+}
 main{
   margin-bottom: 70px;
+}
+img.fluid-width{
+  max-width: 100%;
+}
+#main-figure{ font-size: 24px; }
+#main-footer{ font-size: 30px; }
+
+.contact-info{
+  margin-top: 45px;
+  margin-bottom: 45px;
+}
+
+.btn-close,
+.btn-open{
+  $size: 72px;
+  display: inline-block;
+  height: $size;
+  width: $size;
+  transition: all .2s ease-in-out;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  @media(min-width: $screen-sm){
+    display: none;
+  }
+}
+.btn-close{
+  background-image: url(../images/btn_close.png);
+  .overlay-open &{
+    visibility: visible;
+  }
+}
+.btn-open{
+  background-image: url(../images/btn_open.png);
+  .overlay-open &{
+    visibility: hidden;
+  }
 }
