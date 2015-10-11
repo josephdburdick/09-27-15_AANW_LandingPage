@@ -65,11 +65,22 @@ gulp.task('images', () => {
       // as hooks for embedding and styling
       svgoPlugins: [{cleanupIDs: false}]
     }))
-    .on('error', function (err) {
+    .on('error', (err) => {
       console.log(err);
       this.end();
     })))
     .pipe(gulp.dest('dist/images'));
+});
+
+gulp.task('scripts', () => {
+  return gulp.src('app/scripts/main.js')
+    .pipe($.plumber())
+    .pipe($.sourcemaps.init())
+    .pipe($.esnext())
+    .pipe($.concat('main.js'))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('.tmp/scripts'))
+    .pipe(gulp.dest('dist/scripts'));
 });
 
 gulp.task('fonts', () => {
@@ -91,7 +102,7 @@ gulp.task('extras', () => {
 
 gulp.task('clean', del.bind(null, ['.tmp', 'dist']));
 
-gulp.task('serve', ['styles', 'fonts'], () => {
+gulp.task('serve', ['scripts', 'styles', 'fonts'], () => {
   browserSync({
     notify: false,
     port: 9000,
@@ -111,6 +122,7 @@ gulp.task('serve', ['styles', 'fonts'], () => {
   ]).on('change', reload);
 
   gulp.watch('app/styles/**/*.scss', ['styles']);
+  gulp.watch('app/scripts/**/*.js', ['scripts']);
   gulp.watch('app/fonts/**/*', ['fonts']);
   gulp.watch('bower.json', ['wiredep', 'fonts']);
 });
