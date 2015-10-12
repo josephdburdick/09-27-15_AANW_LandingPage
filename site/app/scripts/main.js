@@ -10,4 +10,14 @@ $(() => {
       $modal.modal('hide');
     }
   }).trigger('resize');
+
+  $modal.on('hide.bs.modal', (e) => {
+    setTimeout(function(){
+      $("html, body").animate({ scrollTop: 0 }, 300);
+    }, 100);
+  });
+
+  $('[data-toggle="modal"]').on('click', (e) =>{
+    e.preventDefault();
+  });
 });

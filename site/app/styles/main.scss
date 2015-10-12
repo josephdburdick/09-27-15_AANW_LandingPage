@@ -181,17 +181,6 @@ a[data-toggle="overlay"]{
     opacity: 0;
   }
 }
-// .footer-content, .modal-content{
-//   .overlay-header{
-//     @extend .main-header;
-//     @media(min-width: $screen-sm){
-//       display: none;
-//     }
-//   }
-//   @media(min-width: $screen-sm){
-//     display: block;
-//   }
-// }
 
 .modal-content{
   .heading{
@@ -216,6 +205,13 @@ a[data-toggle="overlay"]{
 }
 
 /* modal */
+#site-wrapper .main-header{
+  transition: all $defaultSpeed $defaultEase;
+  @extend %fadeIn;
+  .modal-open &{
+    @extend %fadeOut;
+  }
+}
 .modal.fade:not(.in) .modal-dialog {
   transform: translate3d(0, 25%, 0);
 }
@@ -223,5 +219,6 @@ a[data-toggle="overlay"]{
   opacity: .8;
 }
 .modal-content{
+  padding-top: 20px;
   background-color: transparent;
 }
