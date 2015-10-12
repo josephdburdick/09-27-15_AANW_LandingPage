@@ -172,8 +172,9 @@ gulp.task('wiredep', () => {
 
 gulp.task('deploy', ['build'], function() {
   return gulp.src('./dist/**/*')
-    .pipe($.ghPages());
+    .pipe($.ghPages({remoteUrl: 'git@github.com:josephdburdick/AANW_LandingPage'}));
 });
+
 
 gulp.task('build', ['html', 'images', 'fonts', 'extras'], () => {
   return gulp.src('dist/**/*').pipe($.size({title: 'build', gzip: true}));
