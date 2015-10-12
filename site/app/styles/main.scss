@@ -177,16 +177,27 @@ a[data-toggle="overlay"]{
     opacity: 0;
   }
 }
-
+.modal-dialog{
+  @media(max-width: $screen-sm){
+    width: auto;
+  }
+}
 .modal-content{
   .heading, .subheading{
     line-height: 1.3;
   }
   .heading{
-    font-size: 7vw;
+    font-size: 48px;
+    @media(max-width: $screen-xs){
+      font-size: 30px;
+    }
   }
   .sub-heading{
-    font-size: 5vw;
+    font-size: 30px;
+    @media(max-width: $screen-xs){
+      font-size: 24px;
+      line-height: 1.3;
+    }
   }
 }
 .modal [data-role="toggle-container"]{
