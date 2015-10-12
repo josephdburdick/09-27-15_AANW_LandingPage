@@ -216,6 +216,9 @@ a[data-toggle="overlay"]{
 }
 
 /* modal */
+.modal.fade:not(.in) .modal-dialog {
+  transform: translate3d(0, 25%, 0);
+}
 .modal-backdrop.in{
   opacity: .8;
 }
