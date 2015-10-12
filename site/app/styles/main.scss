@@ -45,19 +45,13 @@ body {
   font-size: 16px;
   font-weight: 300;
   line-height: 1.5;
-  &.overlay-open{
+  &.modal-open{
     // overflow: hidden;
   }
 }
 #site-wrapper{
   padding-top: 20px;
   padding-bottom: $toggleButtonSize;
-  // @media(max-width: $screen-sm){
-  //   padding-bottom: $toggleButtonSize + 72px;;
-  // }
-  // @media(min-width: $screen-sm){
-  //   padding-bottom: 90px;
-  // }
 }
 
 header, main, footer{
@@ -69,6 +63,9 @@ header, main, footer{
 }
 a{
   text-decoration: none !important;
+  &:focus{
+    outline: none;
+  }
 }
 .main-header{
   margin-bottom: 30px;
@@ -95,7 +92,7 @@ img.fluid-width{
   & > img{
     transition: opacity ($defaultSpeed * 2) $defaultEase ($defaultDelay * 2);
     opacity: 1;
-    .overlay-open &{
+    .modal-open &{
       opacity: .2;
     }
   }
@@ -107,13 +104,17 @@ img.fluid-width{
     transition-delay: ($defaultSpeed * 2), ($defaultSpeed );
 
     @extend %fadeIn;
-    .overlay-open &{
+    .modal-open &{
       opacity: 0;
-      height: 0;
     }
   }
 }
-#main-footer{ font-size: 30px; }
+#main-footer{
+  @media(max-width: $screen-sm){
+    display: none;
+  }
+}
+.footer-content{ font-size: 30px; }
 .contact-info a{
   @media(min-width: $screen-sm){
     margin-top: 20px;
@@ -167,55 +168,42 @@ a[data-toggle="overlay"]{
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
+  outline: 0;
+  box-shadow: none;
 }
 .btn-close{
   background-image: url(../images/btn_close.png);
-  @extend %fadeOut;
-  left: -($toggleButtonSize / 2);
-  .overlay-open &{
-    @extend %fadeIn;
-    left: $toggleButtonSize / 2;
-  }
+
 }
 .btn-open{
   background-image: url(../images/btn_open.png);
-  @extend %fadeIn;
-  left: -($toggleButtonSize / 2);
-  .overlay-open &{
-    @extend %fadeOut;
-    left: ($toggleButtonSize / 2);
-  }
-}
-#main-footer{
-  .heading{
-    .overlay-open &{
-      font-size: 48px;
-    }
-  }
-  .overlay-header{
-    @extend .main-header;
-    @media(min-width: $screen-sm){
-      display: none;
-    }
-  }
-  @media(min-width: $screen-sm){
-    display: block;
-  }
-  @media(max-width: $screen-sm){
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 0;
+  .modal-open &{
     opacity: 0;
-    transition: all $defaultSpeed $defaultEase $defaultDelay;
-    .overlay-open &{
-      opacity: 1;
-      height: auto;
-      // transition-delay: 2s;
-    }
   }
 }
+// .footer-content, .modal-content{
+//   .overlay-header{
+//     @extend .main-header;
+//     @media(min-width: $screen-sm){
+//       display: none;
+//     }
+//   }
+//   @media(min-width: $screen-sm){
+//     display: block;
+//   }
+// }
 
+.modal-content{
+  .heading{
+    font-size: 7vw;
+  }
+  .sub-heading{
+    font-size: 5vw;
+  }
+}
+.modal [data-role="toggle-container"]{
+  margin-top: 40px;
+}
 .vertical-container{
   display: table;
   height: calc(100vh - 140px); //110px + 30px is height of logo + margin
@@ -225,4 +213,12 @@ a[data-toggle="overlay"]{
     display: table-cell;
     vertical-align: middle;
   }
+}
+
+/* modal */
+.modal-backdrop.in{
+  opacity: .8;
+}
+.modal-content{
+  background-color: transparent;
 }
